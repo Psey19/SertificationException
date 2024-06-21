@@ -31,7 +31,7 @@ public class AllChecks {
         String[] date = birthDate.split("\\.");
 
         if (date.length != 3) {
-            throw new BirthDateException();
+            throw new BirthDateException("Вы забыли поставить разделитель '.'");
         }
 
         String day = date[0];
@@ -50,20 +50,31 @@ public class AllChecks {
             monthNumber = Integer.parseInt(month);
             yearNumber = Integer.parseInt(year);
         } else {
-            throw new BirthDateException();
+            throw new BirthDateException("Вы ввели не числовое значение");
         }
-        if (day.length() != 2 || month.length() != 2 || year.length() != 4 || dayNumber < 1 ||
-                dayNumber > 31 || monthNumber < 1 || monthNumber > 12) {
-            throw new BirthDateException();
+        if (day.length() != 2) {
+            throw new BirthDateException("День рождения необходимо указать в формате 'dd'");
+        } else if (month.length() != 2) {
+            throw new BirthDateException("Месяц рождения необходимо указать в формате 'MM'");
+        } else if (year.length() != 4) {
+            throw new BirthDateException("Год рождения необходимо указать в формате 'yyyy'");
+        } else if (dayNumber < 1) {
+            throw new BirthDateException("День не может быть меньше 1 числа");
+        } else if (dayNumber > 31) {
+            throw new BirthDateException("День не может быть больше 31 числа");
+        } else if (monthNumber < 1) {
+            throw new BirthDateException("Месяц не может быть меньше 1");
+        } else if (monthNumber > 12) {
+            throw new BirthDateException("Месяц не может быть больше 12");
         } else if (monthNumber == 02 && dayNumber == 29) {
             if (yearNumber % 4 != 0 || yearNumber % 400 != 0 && yearNumber % 100 == 0) {
-                throw new BirthDateException();
+                throw new BirthDateException("В феврале этого года 28 дней");
             }
         } else if (monthNumber == 02 && dayNumber > 28) {
-            throw new BirthDateException();
+            throw new BirthDateException("В феврале нет столько дней");
         } else if (dayNumber > 30) {
             if (monthNumber == 04 || monthNumber == 06 || monthNumber == 9 || monthNumber == 11) {
-                throw new BirthDateException();
+                throw new BirthDateException("В этом месяце 30 дней");
             }
         }
     }
