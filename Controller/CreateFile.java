@@ -51,11 +51,11 @@ public class CreateFile {
         } catch (IOException e) {
             System.out.println("Ошибка записи");
         } catch (BirthDateException e) {
-            System.out.println("Неверный формат даты рождения");
+            System.out.println(e.getMessage());
         } catch (GenderException e) {
-            System.out.println("Неверный формат пола");
+            System.out.println("Неверный формат пола (Введите 'm' или 'f')");
         } catch (TelephoneNumberException e) {
-            System.out.println("Неверный формат номера телефона");
+            System.out.println("Неверный формат номера телефона (Вводите только цифры)");
         } catch (NameException e) {
             System.out.println(e.getMessage());
         } catch (LanguageNameException e) {
