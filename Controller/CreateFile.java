@@ -46,6 +46,8 @@ public class CreateFile {
             boolean check = Files.lines(Paths.get(lastName), StandardCharsets.UTF_8).anyMatch(contactData::equals);
             if (!check) {
                 writer.write(contactData + "\n");
+            } else {
+                System.out.println("Такая запись уже существует");
             }
             writer.close();
         } catch (IOException e) {
